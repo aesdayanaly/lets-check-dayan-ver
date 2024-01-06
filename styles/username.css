@@ -1,0 +1,433 @@
+@import "./home.css";
+
+:root {
+    --dark-color: #9A3B3B;
+    --secondary-dark-color:#83541E;
+    --light-color:#FFE096;
+    --white: white;
+}
+
+body {
+    animation: none;
+}
+
+.main-container {
+    height: 63vh;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    background-color: transparent;
+    background-image: url('../images/PNG/button-border.png');
+    background-size: cover;
+    background-position: center;
+    border: none;
+    border-radius: 25px;
+    height: 3.5em;
+    width: 350px;
+    color: var(--light-color);
+    margin: 20px;
+}
+
+.user-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    margin: auto;
+    margin-top: 4em;
+}
+
+.group { 
+    position: relative; 
+    margin: 15px 0 20px 0;
+    z-index: 90;
+}
+
+.group1 { 
+    position: relative; 
+    margin: 15px 0 20px 0;
+    z-index: 70;
+}
+
+input {
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:285px;
+    border:none;
+    border-bottom:1px solid var(--dark-color);
+}
+
+input:focus { 
+    outline:none; 
+}
+
+label {
+    color:#999; 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+
+input:focus ~ label, input:valid ~ label {
+    top:-20px;
+    font-size:14px;
+    color:var(--dark-color);
+}
+
+.bar { 
+    position:relative; 
+    display:block; 
+    width:300px; 
+}
+
+.bar:before, .bar:after {
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    background:var(--dark-color); 
+    transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+
+.bar:before {
+    left:50%;
+}
+
+.bar:after {
+    right:50%; 
+}
+
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+}
+
+.highlight {
+    position:absolute;
+    height:60%; 
+    width:100px; 
+    top:25%; 
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+}
+
+input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+}
+
+
+@keyframes inputHighlighter {
+    from { 
+        background:var(--dark-color); 
+    }
+    to { 
+        width:0; 
+        background:transparent; 
+    }
+}
+
+.spinning {
+    position: absolute;
+    width: 100%;
+}
+
+.object3d {
+    height: auto;
+    transform: perspective(1200px) rotateX(70deg) rotateY(0deg) rotateZ(90deg)
+        translate3d(900px, 0px, 120px);
+    --path-max-rotate: calc(360deg + (-40deg));
+    transform-style: preserve-3d;
+    transition: all ease 1s;
+    transition-property: top, transform;
+}
+
+.reusable-rect {
+    /*defaults - position, size and angle*/
+    --x: 0deg;
+    --y: 0deg;
+    /*--z:0deg;*/
+    --width: 300px;
+    --height: 50px;
+    --length: 600px;
+    --left: 0px;
+    --top: 0px;
+
+    /* colors, shades and shadows */
+    --default-color: white;
+    --shade-template: linear-gradient(
+        0deg,
+        var(--shade-color),
+        var(--shade-color)
+    );
+    --shadow-color: #000;
+    --shadow-intensity: 0.14;
+    --shadow-filter: blur(10px);
+    --shadow-size: 1.05;
+    --shadow-distance: 0px;
+
+    position: relative;
+    width: var(--width);
+    height: var(--length);
+    background: var(--back-color, var(--default-color));
+    display: inline-block;
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+}
+
+.reusable-rect,
+.reusable-rect div {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.reusable-rect .sides {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.reusable-rect:before {
+    transform: translateZ(var(--height));
+    background: var(--front-color, var(--default-color));
+}
+
+.reusable-rect .side1 {
+    width: var(--height);
+    height: var(--length);
+    transform: rotateY(-90deg);
+    transform-origin: 0% 0%;
+    background: var(--x-axis-left-color, var(--default-color));
+}
+
+.reusable-rect .side1::before {
+    background-color: var(--x-axis-right-color, var(--default-color));
+    background-image: var(--shade-template);
+    transform: translateZ(calc(var(--width) * -1));
+}
+
+.reusable-rect .side2 {
+    width: var(--width);
+    height: var(--height);
+    transform: rotateX(90deg);
+    transform-origin: 0% 0%;
+    background: var(--y-axis-top-color, var(--default-color));
+}
+
+.reusable-rect .side2::before {
+    background-color: var(--y-axis-bottom-color, var(--default-color));
+    background-image: var(--shade-template);
+    transform: translateZ(calc(var(--length) * -1));
+}
+
+.reusable-rect:before,
+.reusable-rect .side1::before,
+.reusable-rect .side2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.main-stage {
+    --width: var(--border-template);
+    --height: 60px;
+    --length: var(--border-template);
+
+    --shade-color: rgba(0, 0, 0, 0);
+    --back-color: #ffdbb7;
+    --front-color: #ffdbb7;
+    --x-axis-left-color: #bf9d7a;
+    --x-axis-right-color: #bf9d7a;
+    --x-axis-right-color-2: #905438;
+    --y-axis-top-color: #e8c19a;
+    --y-axis-bottom-color: #e8c19a;
+}
+
+.main-stage::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 51%;
+    width: 106%;
+    height: 103%;
+    background: rgba(0, 0, 0, 0.24);
+    filter: blur(10px);
+    transform: translate(-50%, -50%) translateZ(-1px);
+    border-radius: 4%;
+    backface-visibility: hidden;
+}
+
+.main-stage .side1 {
+    background-color: var(--front-color);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        linear-gradient(0deg, transparent 50%, var(--front-color) 50%);
+    background-size: 1px 1px, 200px 200px;
+}
+
+.main-elements {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--max-area);
+    height: var(--max-area);
+    transform: translate(-50%, -50%) translateZ(var(--height));
+    transform-style: preserve-3d;
+    --concat-color: #905438;
+    background-image: linear-gradient(
+            45deg,
+            var(--concat-color) calc(25% + 0.3px),
+            transparent 25%,
+            transparent 75%,
+            var(--concat-color) 75%,
+            var(--concat-color) 0
+        ),
+        linear-gradient(
+            45deg,
+            var(--concat-color) calc(25% + 0.3px),
+            transparent 25%,
+            transparent 75%,
+            var(--concat-color) 75%,
+            var(--concat-color) 0
+        );
+    background-size: var(--block-set-size) var(--block-set-size);
+    background-position: 0 0, var(--block-size) var(--block-size);
+}
+
+.main-elements::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.main-elements::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--outline-template);
+    height: var(--outline-template);
+    border: var(--outline-size) solid #905438;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    transition: all ease 0.4s;
+    transition-property: width, height, border;
+    box-sizing: content-box;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0);
+}
+
+.chess-defaults {
+    --block-size: 70px;
+    --block-set-size: calc(var(--block-size) * 2);
+    --block-size-ag: 50;
+    --outline-size: 6px;
+    --outline-offset: 8px;
+    --border-size: 60px;
+    --border-size-init: 20px;
+    --max-area: calc(var(--block-size) * 8);
+    --outline-template: calc(100% + var(--outline-offset) * 2);
+    --border-template: calc(var(--max-area) + var(--border-size) * 2);
+    --oct-path: polygon(50% 0%, 0 100%, 100% 100%);
+    --nan-path: polygon(50% 0%, 0 96%, 86% 100%);
+    z-index: 50;
+}
+
+/* Pieces */
+.board {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform-style: preserve-3d;
+}
+
+.piece {
+    position: absolute;
+    left: calc(var(--block-size) * min(var(--h), 7));
+    bottom: calc(var(--block-size) * min(var(--v), 7));
+    width: var(--block-size);
+    height: var(--block-size);
+    transform: rotate(0deg);
+    transform-style: preserve-3d;
+    transition: background-color ease 0.5s;
+    --A-color: #dba162;
+    --B-color: #b38554;
+    border-radius: 50%;
+}
+
+.piece > .reusable-rect {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    --back-color: #8c2e2e;
+    --front-color: #9a3b3b;
+    --x-axis-left-color: #8c2e2e;
+    --x-axis-right-color: #9a3b3b;
+    --y-axis-top-color: #ed7272;
+    --y-axis-bottom-color: #ed7272;
+}
+
+.piece.BLUE > .reusable-rect {
+    --back-color: #00659e;
+    --front-color: #00659e;
+    --x-axis-left-color: #001826;
+    --x-axis-right-color: #012940;
+    --y-axis-top-color: #012940;
+    --y-axis-bottom-color: #001826;
+}
+
+.piece.BLUE {
+    --A-color: #001826;
+    --B-color: #00659e;
+}
+
+.PAWN {
+    --piece-basesize: 50px;
+    --piece-upsize: 120px;
+    --piece-thickness: 20px;
+    --piece-height: 10px;
+    --piece-head: 20px;
+}
+
+.piece-base::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    width: 120%;
+    height: 120%;
+    filter: blur(10px);
+    border-radius: 50%;
+}
+
+.piece-base {
+    transform: translate(-50%, -50%);
+    --width: var(--piece-basesize);
+    --length: var(--piece-basesize);
+    --height: 15px;
+    border-radius: 50%;
+}

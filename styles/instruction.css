@@ -1,0 +1,151 @@
+@import "./username.css";
+
+body {
+  font-family: 'Londrina Solid', sans-serif;
+  font-weight: 400;
+  background-image: url("https://r4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-78664db880d01c78404c214e28e2847a.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  animation: transitionIn 1.5s;
+}
+
+@keyframes transitionIn {
+  from {
+    opacity: 0;
+    transform: rotateX(45deg) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) translateY(0px);
+  }
+}
+
+.box {
+  width: 55%;
+  height: 60%;
+  border-radius: 25px;
+  background: radial-gradient(circle, rgba(255,229,197,1) 0%, rgba(255,200,132,1) 44%, rgba(223,152,73,1) 100%);
+  border: 5px solid #83541e;
+  padding: 20px;
+  overflow: auto; 
+  margin-bottom: 5%;
+  box-shadow: inset 0 6px 2px #cd893b;
+}
+
+::-webkit-scrollbar{
+  width: 5px;
+}
+::-webkit-scrollbar-track{
+  margin: 0;
+  border-radius: 100px;
+}
+
+.title-container {
+  background-color:#F2ECBE;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 15px;
+}
+
+.instr-title {
+  font-family: 'Bowlby One SC', sans-serif;
+  font-size: 50px;
+  font-weight: 900;   
+  color: #9A3B3B;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.sub-title {
+  margin: 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.column {
+  margin-bottom: 20px; 
+}
+
+h1 {
+  font-family: 'Bowlby One SC', sans-serif;
+  font-size: 50px;
+  font-weight: 900;   
+  margin: 0;
+  text-align: center; 
+  line-height: 1;
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 2rem;
+  text-align: justify;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  margin: 0;
+}
+
+.button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  height: 55px;
+  width: 200px;
+  background: rgb(255,224,150);
+  background: linear-gradient(0deg, rgba(255,224,150,1) 19%, rgba(255,240,200,1) 75%);
+  border-radius: 15px;
+  box-shadow: rgba(236, 186, 136, 0.2) 0 -25px 18px -14px inset,rgba(187, 149, 44, 0.15) 0 1px 2px,rgba(187, 132, 44, 0.15) 0 2px 4prgba(187, 154, 44, 0.15)5 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: rgb(128, 90, 0);
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  box-shadow: rgba(187, 158, 44, 0.35) 0 -25px 18px -14px inset,rgba(187, 134, 44, 0.25) 0 1px 2px,rgba(187, 151, 44, 0.25) 0 2px 4px,rgba(187, 127, 44, 0.25) 0 4px 8px,rgba(187, 142, 44, 0.25) 0 8px 16px,rgba(187, 130, 44, 0.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}

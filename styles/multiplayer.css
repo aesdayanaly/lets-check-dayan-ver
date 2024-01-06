@@ -1,0 +1,84 @@
+body {
+    font-family: 'Open Sans', sans-serif, 'Poppins', sans-serif, 'Raleway', sans-serif;
+    background-image: url("https://media.istockphoto.com/id/1454860970/photo/4k-defocused-background.webp?b=1&s=170667a&w=0&k=20&c=y6-9A8uhyLpeNuH7WPt3o8Nc4lRqetEmvmD3po4xndk=");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: transitionIn 1.5s;
+}
+
+@keyframes transitionIn {
+    from {
+      opacity: 0;
+      transform: rotateX(45deg) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: rotateX(0deg) translateY(0px);
+    }
+  }
+
+#score {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+#score #p1-score .capturedPiece {
+    width: 2.4vmin;
+    height: 2.4vmin;
+    background-color: red;
+    border-radius: 6vmin;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 5px; 
+}
+
+#score #p2-score .capturedPiece {
+    width: 2.4vmin;
+    height: 2.4vmin;
+    background-color: blue;
+    border-radius: 6vmin;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 5px; 
+}
+
+#clock {
+    display: flex;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin: 0;
+}
+
+.button {
+    display: block;
+    width: 150px;
+    height: 20px;
+    margin: 10px;
+    border: 1px solid black;
+    padding: 15px 20px;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.button:hover {
+    background-color: #3f160e; 
+    transform: scale(1.1); 
+}

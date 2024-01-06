@@ -1,0 +1,267 @@
+:root {
+    --dark-color: #9A3B3B;
+    --secondary-dark-color:#83541E;
+    --light-color:#FFE096;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif, 'Poppins', sans-serif, 'Raleway', sans-serif;
+    background-image: url("https://r4.wallpaperflare.com/wallpaper/760/955/638/artwork-landscape-sky-mountains-wallpaper-78664db880d01c78404c214e28e2847a.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    animation: transitionIn 1.5s;
+}
+
+@keyframes transitionIn {
+    from {
+      opacity: 0;
+      transform: rotateX(45deg) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: rotateX(0deg) translateY(0px);
+    }
+}
+
+#checkerboard {
+    position: relative;
+    width: 520px;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(236, 186, 136, 0.2);
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+#checkerboard::before {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 140%;
+    background: linear-gradient(#9A3B3B, #00659E);
+    animation: animate 7s linear infinite;
+}
+
+#checkerboard::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 16px;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#checkerboard canvas {
+    z-index: 10;
+}
+
+#p1-score, #p2-score {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    position: fixed;
+    box-sizing: border-box;
+    background-image: url('../images/PNG/red-score.png'); 
+    background-size: cover;
+    height: 61%;
+    width: 17%;
+    top: 50%;
+    padding: 0px 30px;
+    transform: translateY(-50%);
+}
+
+#p1-score {
+    background-image: url('../images/PNG/blue-score.png'); 
+    left: 8%;     
+}
+
+#p2-score {  
+    right: 8%;
+}
+
+#p1-score h3, #p2-score h3 {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 40% 0 10% 0;
+    color: var(--light-color);
+}
+
+.capturedPiece {
+    display: flex;
+    margin: 5px;
+    height: 45px;
+    width: 45px;
+}
+
+#clock {
+    display: flex;
+    order: 1;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 30px;
+    width: 90px;
+    background-image: url('../images/PNG/button-short.png');
+    background-size: cover;
+    color: var(--light-color);
+    padding: 7px 20px;
+    text-align: center;
+    border: 0;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin: 10px;
+    order: -1;
+}
+
+.button {
+    display: block;
+    width: 150px;
+    height: 20px;
+    margin: 10px;
+    padding: 15px 20px;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.button:hover {
+    transform: scale(1.1); 
+}
+
+#confirmation-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('../images/PNG/board-short.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    text-align: center;
+    z-index: 999;
+    height: 18%;
+    width: 19%;
+    padding: 40px 50px;
+    color: var(--light-color);
+}
+
+#yesButton, #noButton {
+    background-color: transparent;
+    background-image: url('../images/PNG/yes.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    border: none; 
+    cursor: pointer;
+    height: 90px;
+    width: 90px;
+    margin: 30px 15px 0px 15px;
+}
+
+#noButton {
+    background-image: url('../images/PNG/no.png');
+    background-size: cover;
+    background-position: center;
+}
+
+#backButton {
+    background-image: url('../images/PNG/button-border.png');
+    background-color: transparent;
+    z-index: 99;
+    background-size: cover;
+    height: 40px;
+    width: 150px;
+    text-align: center;
+    border: none;
+    color: var(--light-color);
+}
+
+#yesButton:hover, 
+#noButton:hover, 
+#saveButton:hover, 
+#retryButton:hover,
+#homeButton:hover, 
+#backButton:hover {
+    transform: scale(1.05) rotate(-1deg);
+    transition: all 0.4s;
+    filter:contrast(1.3);
+    cursor: pointer;
+}
+
+.modal {
+    display: none; 
+    background-image: url('../images/PNG/winner.png');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    width: 400px;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    color: var(--light-color);
+}
+
+.modal-content {
+    margin: 30% 5%;
+    padding: 20px;
+    width: auto;
+}
+
+#popupMessage {
+    font-family: 'Bowlby One SC', sans-serif;
+    font-size: 36px;
+    text-align: center;
+}
+
+#popupScores {
+    font-size: 26px;
+}
+
+#saveButton, #homeButton, #retryButton {
+    position: fixed;
+    background-color: transparent;
+    background-image: url('../images/PNG/leaderboard.png');
+    background-size: cover;
+    background-position: center;
+    border: none;
+    height: 90px;
+    width: 90px;
+    margin: 18px 5px;
+}
+
+#retryButton {
+    background-image: url('../images/PNG/retry.png');
+    margin-left: 220px;
+}
+
+#homeButton {
+    background-image: url('../images/PNG/home.png');
+    margin-left: 110px;
+}
+
